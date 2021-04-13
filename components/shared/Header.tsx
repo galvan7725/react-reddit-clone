@@ -40,7 +40,6 @@ const Header = (): JSX.Element => {
                     
                 </Collapse>
             </Navbar>
-
         </header>
     )
 }

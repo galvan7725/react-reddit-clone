@@ -3,3 +3,12 @@
 body{
     font-family: 'RocknRoll One', sans-serif !important;
 }
+
+.form-title {
+    padding: 10px;
+}
+
+.form-container{
+    margin-top: 30px;
+    border: 1px solid #000;
+}

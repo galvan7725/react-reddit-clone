@@ -1,18 +1,16 @@
 import Head from 'next/head'
-import Header from '../components/Header'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from '../components/shared/Header'
+import Layout from '../components/shared/Layout';
+import { Row } from 'reactstrap';
 
 const Home = () : JSX.Element => {
   return (
-    <div>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Header/>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse reiciendis, provident dolor ut nam nobis harum voluptatem vel sed beatae culpa non qui eligendi atque, aspernatur temporibus, nemo facere eos.</p>
-      
-    </div>
+    <Layout pageTitle="Inicio">
+      <Row >
+       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, expedita qui ipsam veniam id, dolore vitae eveniet ratione corporis voluptates facilis inventore aspernatur? Iste, voluptatum. Distinctio, sit. Consequuntur, fugiat asperiores!</p>
+
+      </Row>
+    </Layout>
   )
 }
 
