@@ -1,8 +1,9 @@
 import React from 'react';
-import { Col, Row , Button, Container} from 'reactstrap';
+import { Col, Row , Button, Container, FormGroup} from 'reactstrap';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import MyInput from './FormikInput';
+import Link from 'next/link';
 
 
 const Signup = () : JSX.Element => {
@@ -42,7 +43,11 @@ const Signup = () : JSX.Element => {
                                   <Field type="email" label="Email" name="email" component={MyInput} />
                                   <Field type="text" label="Username" name="username" component={MyInput} />
                                   <Field type="password" label="Password" name="password" component={MyInput} />
-                                  <Button type="submit" color="success" >Register</Button>
+                                  <div style={{display:'flex'}}>
+                                    <Button type="submit" color="success" >Register</Button>
+                                    <label style={{marginLeft:'auto'}} >Existing user?</label>
+                                    <Link  href="/login" >Login</Link>
+                                  </div>
                               </Form>
                           )}  
                         </Formik>
