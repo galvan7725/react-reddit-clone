@@ -1,21 +1,38 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Col, Row , Button, Container, FormGroup} from 'reactstrap';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import MyInput from './FormikInput';
 import Link from 'next/link';
+import { signUp } from './ApiCalls';
+
 
 
 const Signup = () : JSX.Element => {
 
+    const [loadign, setLoadign] = useState<boolean>(false);
+    const [erros, setErros] = useState<String>("");
     const signupSchema = Yup.object().shape({
         email :Yup.string().email('Invalid Email').required('Required'),
         username :Yup.string().min(5,'Too short').max(50,'Too long').required('Required'),
         password :Yup.string().min(5,'Password in too short').max(50,'Password in too long').required('Password is required')
     })
 
-    const signup = (values, actions) =>{
-        alert('Signup works');
+    const signup = async (values, actions) : Promise<any> => {
+        console.log('Signup works'+JSON.stringify(values));
+        setLoadign(true);
+        try {
+            const response = await signUp(values);
+            if (response.error) {
+                setLoadign(false);
+                setErros(response.error);
+            }else{
+                setLoadign(false);
+                console.log("Register Success!");
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
