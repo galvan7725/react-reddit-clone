@@ -8,7 +8,7 @@ interface UserData{
 
 const BASE_URL = 'http://localhost:8080/api';
 
-export const signUp = (userData: UserData) : any =>{
+export const signUp = (userData: UserData) : Promise<any> =>{
 
     return axios({
         method: 'POST',
@@ -19,7 +19,7 @@ export const signUp = (userData: UserData) : any =>{
             "Content-Type": "application/json"
         }
     }).then((response)=>{
-        return response
+        return response;
     }).catch((error)=>{console.log(error)});
 
 }
