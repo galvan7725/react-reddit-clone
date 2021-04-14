@@ -1,9 +1,9 @@
 import axios,{AxiosResponse} from 'axios';
 
 interface UserData{
-    email: Text,
-    username: Text,
-    password: Text
+    email: string,
+    username: string,
+    password: string
 }
 
 const BASE_URL = 'http://localhost:8080/api';
