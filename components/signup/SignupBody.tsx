@@ -2,11 +2,12 @@ import React,{useState} from 'react';
 import { Col, Row , Button, Container, FormGroup, Spinner} from 'reactstrap';
 import { Formik, Form, Field, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
-import MyInput from './FormikInput';
+import MyInput from '../shared/FormikInput';
 import Link from 'next/link';
 import { signUp } from './ApiCalls';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import AuthForm from '../shared/AuthForm';
 
 const MySwal = withReactContent(Swal);
 
@@ -68,16 +69,8 @@ const Signup = () : JSX.Element => {
 
     return (
         <>
-          <Row style={{marginTop:'5px'}}>
-             <Col xs={12} md={{size:6, order:2 , offset:3}}>
-                <div className="form-container">
-                    <Container className="form-title text-center" style={{backgroundColor:'#f8f9fa'}}>
-                        <Col xs={12} md={{size:6, order:2, offset:3}}>
-                            <h3>Register</h3>
-                        </Col>
-                    </Container>
-                    <Container style={{padding:'10px'}}>
-                        <Formik
+          <AuthForm formTitle="Resgister">
+                    <Formik
                         initialValues={{
                             email: "",
                             username: "",
@@ -92,6 +85,7 @@ const Signup = () : JSX.Element => {
                                   <Field type="text" label="Username" name="username" component={MyInput} />
                                   <Field type="password" label="Password" name="password" component={MyInput} />
                                   <div style={{display:'flex'}}>
+                                    
                                     <Button type="submit" color="success" disabled={loadign} >Register</Button>
                                     {loadign ? <Spinner color="primary" /> : null}
                                     <label style={{marginLeft:'auto'}} >Existing user?</label>
@@ -100,10 +94,7 @@ const Signup = () : JSX.Element => {
                               </Form>
                           )}  
                         </Formik>
-                    </Container>
-                </div>
-             </Col>
-          </Row>  
+          </AuthForm>      
         </>
     )
 }
