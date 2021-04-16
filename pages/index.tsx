@@ -4,6 +4,7 @@ import { Row } from 'reactstrap';
 import { getJWT } from '../components/services/authService';
 import { useRouter } from 'next/router';
 import Loading from '../components/shared/Loading';
+import IndexBody from '../components/IndexC/IndexBody';
 
 const Home = () : JSX.Element => {
 
@@ -28,11 +29,8 @@ const Home = () : JSX.Element => {
       ) 
       : (
         <Layout pageTitle="Inicio">
-        <Row >
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, expedita qui ipsam veniam id, dolore vitae eveniet ratione corporis voluptates facilis inventore aspernatur? Iste, voluptatum. Distinctio, sit. Consequuntur, fugiat asperiores!</p>
-
-        </Row>
-      </Layout>
+            <IndexBody />
+        </Layout>
       )}
     </>    
   )
