@@ -19,8 +19,6 @@ const Home = () : JSX.Element => {
       setLoading(false);
       setIsLogin(true);
     }
-    
-    
   }, [])
 
   return (
