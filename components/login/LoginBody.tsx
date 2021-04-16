@@ -6,6 +6,7 @@ import Link from 'next/link';
 import * as Yup from 'yup';
 import MyInput from '../shared/FormikInput';
 import { Login, saveToken } from './ApiCalls';
+import { useRouter } from 'next/router';
 
 
 interface LoginData {
@@ -14,7 +15,10 @@ interface LoginData {
 }
 
 
+
 const LoginBody = (): JSX.Element=> {
+
+  const router = useRouter();
 
 
   const [loadign, setLoadign] = useState<boolean>(false);
@@ -30,6 +34,7 @@ const LoginBody = (): JSX.Element=> {
       setLoadign(true);
       setError("");
       setErrorStatus(null);
+
       try {
         const response = await Login(values);
         if (response.error){
@@ -41,6 +46,7 @@ const LoginBody = (): JSX.Element=> {
         }else{
           setLoadign(false);
           saveToken(response);
+          router.push('/');
           //console.log('Success',response);
 
         }

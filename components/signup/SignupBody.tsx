@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { Col, Row , Button, Container, FormGroup, Spinner} from 'reactstrap';
+import { Col, Row , Button, Container, FormGroup, Spinner, Alert} from 'reactstrap';
 import { Formik, Form, Field, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import MyInput from '../shared/FormikInput';
@@ -42,6 +42,8 @@ const Signup = () : JSX.Element => {
 
     const [loadign, setLoadign] = useState<boolean>(false);
     const [errors, setErrors] = useState<String>("");
+    const [successAlert, setSuccessAlert] = useState<boolean>(false);
+
     const signupSchema = Yup.object().shape({
         email :Yup.string().email('Invalid Email').required('Required'),
         username :Yup.string().min(5,'Too short').max(50,'Too long').required('Required'),
@@ -51,6 +53,7 @@ const Signup = () : JSX.Element => {
     const signup = async (values : UserData , actions: FormikHelpers<UserData>) : Promise<any> => {
         //console.log('Signup works'+JSON.stringify(values));
         setLoadign(true);
+        setSuccessAlert(false);
         try {
             const response = await signUp(values);
             if (response.error) {
@@ -60,6 +63,7 @@ const Signup = () : JSX.Element => {
             }else{
                 setLoadign(false);
                 showAlert(true);
+                setSuccessAlert(true);
                 console.log("Register Success!");
             }
         } catch (error) {
@@ -90,6 +94,9 @@ const Signup = () : JSX.Element => {
                                     {loadign ? <Spinner color="primary" /> : null}
                                     <label style={{marginLeft:'auto'}} >Existing user?</label>
                                     <Link  href="/login" >Login</Link>
+                                  </div>
+                                  <div style={{display:'flex',width:'100%', marginTop:'5px'}}>
+                                  {successAlert ? <Alert color="success">Register successfully, please check your inbox for activate your account.</Alert> : null}
                                   </div>
                               </Form>
                           )}  

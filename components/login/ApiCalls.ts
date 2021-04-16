@@ -1,16 +1,6 @@
 import axios from 'axios';
+import { JWTData, LoginData } from '../interfaces';
 
-interface LoginData {
-    username : string;
-    password : string;
-}
-
-interface JWTData{
-    authenticationToken: string,
-    expiresAt: string,
-    refreshToken: string,
-    username: string
-}
 
 const BASE_URL = 'http://localhost:8080/api';
 
