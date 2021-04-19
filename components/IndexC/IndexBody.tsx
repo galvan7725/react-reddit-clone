@@ -4,7 +4,8 @@ import { PostData } from '../interfaces';
 import { refreshToken } from '../services/authService';
 import { getAllPosts } from '../services/PostService';
 import Loading from '../shared/Loading';
-import PostTitle from './PostTitle';
+import PostTitle from './PostContainer';
+import Sidebar from './Sidebar';
 
 const IndexBody = () : JSX.Element => {
 
@@ -38,22 +39,24 @@ const IndexBody = () : JSX.Element => {
                 loading ? (
                     <Loading/>
                 ) : (
-                        <>{posts.length > 0 ? (<>
-                            {posts.map((post,i)=>{
-                                return(
-                                    <>
-                                    <Col xs={12} md={8}>
-                                        <PostTitle {...post} />
-                                    </Col>
-                                    <Col xs={12} md={4}>
-                                        <Sidebar />
-                                    </Col>
-                                    </>
-                                )
-                            })}
-                        </>) : (<>
-                            <p>Posts not found</p>
-                        </>)}</>
+                        <>
+                        <Col xs={12} md={8}>
+                            {posts.length > 0 ? (<>
+                                {posts.map((post,i)=>{
+                                    return(
+                                        <Col xs={12} md={12}>
+                                            <PostTitle {...post} />
+                                        </Col> 
+                                    )
+                                })}
+                            </>) : (<>
+                                <p>Posts not found</p>
+                            </>)}
+                        </Col>
+                        <Col xs={12} md={4}>
+                            <Sidebar />
+                        </Col>
+                       </>
                     )
             }
         </Container>

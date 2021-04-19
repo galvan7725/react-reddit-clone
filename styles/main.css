@@ -16,6 +16,7 @@ body{
 .post-container{
   margin-top: 5px;
   border: 3px solid rgb(181 173 173);
+  padding: 10px;
 }
 
 .votes-container{
@@ -28,6 +29,7 @@ body{
   flex-direction: row;
   justify-content: center;
   width: 100%;
+  padding: 10px;
 }
 
 .title-container{
@@ -49,10 +51,33 @@ body{
   font-size: 15px;
 }
 
+.posted-by-link{
+  color: darkcyan;
+  cursor: pointer;
+}
+
+
 .post-duration{
   margin-right: 5px;
   color: rgb(181 173 173);
   font-size: 15px;
+}
+
+.post-information-container{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.post-description{
+  color: rgb(87, 86, 86);
+}
+
+.post-footer{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 5px;
 }
 
 

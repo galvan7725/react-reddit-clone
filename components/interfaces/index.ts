@@ -24,3 +24,18 @@ export interface PostData{
     userName: string,
     voteCount: number
 }
+
+export interface VoteCountData {
+    voteCount? : number
+}
+
+export interface postHeaderData{
+    subredditName: string,
+    userName: string,
+    duration: string
+}
+
+export interface postBodyData{
+    postName: string,
+    description: string
+}
