@@ -1,8 +1,10 @@
 import React,{ useState, useEffect} from 'react';
-import { Container } from 'reactstrap';
+import { Col, Container } from 'reactstrap';
 import { PostData } from '../interfaces';
 import { refreshToken } from '../services/authService';
 import { getAllPosts } from '../services/PostService';
+import Loading from '../shared/Loading';
+import PostTitle from './PostTitle';
 
 const IndexBody = () : JSX.Element => {
 
@@ -32,8 +34,27 @@ const IndexBody = () : JSX.Element => {
 
     return (
         <Container>
-            {posts.length > 0 ? (<><p>{posts.map((p,i)=>JSON.stringify(p))}</p></>) :
-            (<>Posts not found</>)
+            {
+                loading ? (
+                    <Loading/>
+                ) : (
+                        <>{posts.length > 0 ? (<>
+                            {posts.map((post,i)=>{
+                                return(
+                                    <>
+                                    <Col xs={12} md={8}>
+                                        <PostTitle {...post} />
+                                    </Col>
+                                    <Col xs={12} md={4}>
+                                        <Sidebar />
+                                    </Col>
+                                    </>
+                                )
+                            })}
+                        </>) : (<>
+                            <p>Posts not found</p>
+                        </>)}</>
+                    )
             }
         </Container>
     )

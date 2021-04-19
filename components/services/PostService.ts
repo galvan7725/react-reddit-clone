@@ -6,10 +6,10 @@ const BASE_URL = 'http://localhost:8080/api';
 export const getAllPosts = async() : Promise<any> => {
    try {
     const response = await getAllPostsCall();
-    if (response == null || response.error) {
+    if (!response || response.error) {
        await refreshToken();
         const res = await getAllPostsCall();
-        if (res == null || res.error) {
+        if (!res|| res.error) {
             return res;     
         }else{
             return res;
@@ -34,5 +34,5 @@ const getAllPostsCall = () : Promise<any> => {
         }
     }).then((response)=>{
         return response.data;
-    }).catch((error)=>{ return error.response || null});
+    }).catch((error)=>{ return error.response});
 }

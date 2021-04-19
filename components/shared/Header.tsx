@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import {
     Collapse,
@@ -7,18 +7,31 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
     Button
 } from 'reactstrap';
 import Image from 'next/image';
+import { getJWT } from '../services/authService';
 
 const Header = (): JSX.Element => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isLogin, setIsLogin] = useState<boolean>(null);
 
     const toggle = (): void => {
         setIsOpen(!isOpen);
     }
+
+    const hasJwt = (): void =>{
+        if(getJWT() == null){
+            setIsLogin(false);
+        }else{
+            setIsLogin(true);
+        }
+    }
+
+    useEffect(() => {
+        hasJwt();
+    }, [])
 
     const router = useRouter();
 
@@ -30,12 +43,16 @@ const Header = (): JSX.Element => {
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="ml-auto" navbar>
-                        <NavItem>
-                            <Button onClick={()=>{router.push('/login')}} color="primary" style={{marginRight:'5px'}}>LOGIN</Button>
-                        </NavItem>
-                        <NavItem>
-                            <Button onClick={()=>{router.push('/signup')}} outline color="primary">SIGN UP</Button>
-                        </NavItem>
+                        {isLogin ? (<>
+                            
+                        </>) : (<>
+                            <NavItem>
+                                <Button onClick={()=>{router.push('/login')}} color="primary" style={{marginRight:'5px'}}>LOGIN</Button>
+                            </NavItem>
+                            <NavItem>
+                                <Button onClick={()=>{router.push('/signup')}} outline color="primary">SIGN UP</Button>
+                            </NavItem>
+                        </>)}
                     </Nav>
                     
                 </Collapse>
