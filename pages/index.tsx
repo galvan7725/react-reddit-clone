@@ -5,6 +5,7 @@ import { getJWT } from '../components/services/authService';
 import { useRouter } from 'next/router';
 import Loading from '../components/shared/Loading';
 import IndexBody from '../components/IndexC/IndexBody';
+import { PostStateProvider } from '../context/PostContext';
 
 const Home = () : JSX.Element => {
 
@@ -29,7 +30,9 @@ const Home = () : JSX.Element => {
       ) 
       : (
         <Layout pageTitle="Inicio">
-            <IndexBody />
+          <PostStateProvider>
+              <IndexBody />
+          </PostStateProvider>
         </Layout>
       )}
     </>    

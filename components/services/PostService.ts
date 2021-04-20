@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { voteData } from '../interfaces';
 import { getJWT, refreshToken } from './authService';
 
 const BASE_URL = 'http://localhost:8080/api';
@@ -36,3 +37,39 @@ const getAllPostsCall = () : Promise<any> => {
         return response.data;
     }).catch((error)=>{ return error.response});
 }
+
+
+export const postUpVote = (voteData : voteData) : Promise<any> =>{
+const {authenticationToken} = getJWT();
+
+return axios({
+    method: 'POST',
+    url:`${BASE_URL}/votes/`,
+    headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${authenticationToken}`
+    },
+    data: voteData
+}).then((response)=>{
+    return response.data;
+}).catch((error)=>{ return error.response.data});
+
+}
+
+
+export const postDownVote = (voteData : voteData) : Promise<any> =>{
+    const {authenticationToken} = getJWT();
+    
+    return axios({
+        method: 'POST',
+        url:`${BASE_URL}/votes/`,
+        headers: {
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${authenticationToken}`
+        },
+        data: voteData
+    }).then((response)=>{
+        return response.data;
+    }).catch((error)=>{ return error.response.data});
+    
+    }

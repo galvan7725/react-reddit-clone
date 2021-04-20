@@ -22,11 +22,14 @@ export interface PostData{
     upVote: boolean,
     url: string,
     userName: string,
-    voteCount: number
+    voteCount: number,
+    handleVote: Function
 }
 
 export interface VoteCountData {
-    voteCount? : number
+    voteCount? : number,
+    handleVote: Function,
+    postId: number
 }
 
 export interface postHeaderData{
@@ -38,4 +41,9 @@ export interface postHeaderData{
 export interface postBodyData{
     postName: string,
     description: string
+}
+
+export interface voteData{
+    postId: number,
+    voteType : "UPVOTE" | "DOWNVOTE"
 }

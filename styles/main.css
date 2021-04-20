@@ -29,7 +29,12 @@ body{
   flex-direction: row;
   justify-content: center;
   width: 100%;
-  padding: 10px;
+  padding: 5px;
+}
+
+.vote-icons :hover{
+  color: rgb(130, 167, 223);
+  cursor: pointer;
 }
 
 .title-container{

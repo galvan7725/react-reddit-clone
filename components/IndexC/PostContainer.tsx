@@ -11,14 +11,20 @@ import PostBody from './PostBody';
 import PostFooter from './PostFooter';
 
 
-const PostTitle = (data: PostData): JSX.Element => {
+const PostTitle = (data: PostData, handleVote : Function): JSX.Element => {
+
+    const handleVoteE = (status : boolean) : void => {
+        console.log(data);
+        console.log(status);
+        console.log(typeof handleVote);
+    }
 
     const router = useRouter();
     return (
         <>
             <Container className="post-container">
                 <Row>
-                        <VoteCount voteCount={data.voteCount} />
+                        <VoteCount {...{voteCount:data.voteCount,handleVote:handleVoteE,postId:data.id}} />
                         <PostHeader {...{subredditName:data.subredditName,userName:data.userName,duration:data.duration}} />
                         <PostBody {...{postName:data.postName,description:data.description}} />
                         <PostFooter {...{commentCount:data.commentCount,id:data.id}} />

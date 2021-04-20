@@ -1,17 +1,24 @@
 import React,{ useState, useEffect} from 'react';
 import { Col, Container } from 'reactstrap';
+import { PostStateProvider, useChangePostStatus } from '../../context/PostContext';
 import { PostData } from '../interfaces';
 import { refreshToken } from '../services/authService';
 import { getAllPosts } from '../services/PostService';
 import Loading from '../shared/Loading';
-import PostTitle from './PostContainer';
+import PostContainer from './PostContainer';
 import Sidebar from './Sidebar';
 
 const IndexBody = () : JSX.Element => {
 
     const [posts, setPosts] = useState<Array<PostData>>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const [changeData, setChangeData] = useState<boolean>(false);
 
+    const handleVoteEvent = (success: boolean) : void => {
+        setChangeData(true);
+    }
+
+    const {state} =  useChangePostStatus();
 
     const getPostsData = async () : Promise<void> => {
         try {
@@ -30,8 +37,9 @@ const IndexBody = () : JSX.Element => {
     }
 
     useEffect(() => {  
+        console.log(state.status);
         getPostsData();
-    }, [])
+    }, [state.status])
 
     return (
         <Container>
@@ -45,7 +53,7 @@ const IndexBody = () : JSX.Element => {
                                 {posts.map((post,i)=>{
                                     return(
                                         <Col xs={12} md={12}>
-                                            <PostTitle {...post} />
+                                                    <PostContainer {...post} {...handleVoteEvent}/>
                                         </Col> 
                                     )
                                 })}
