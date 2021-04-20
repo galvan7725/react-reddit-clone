@@ -51,7 +51,7 @@ return axios({
     },
     data: voteData
 }).then((response)=>{
-    return response.data;
+    return response.data ? response.data : response.status;
 }).catch((error)=>{ return error.response.data});
 
 }

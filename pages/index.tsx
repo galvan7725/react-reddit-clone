@@ -6,18 +6,19 @@ import { useRouter } from 'next/router';
 import Loading from '../components/shared/Loading';
 import IndexBody from '../components/IndexC/IndexBody';
 import { PostStateProvider } from '../context/PostContext';
+import { ToastContainer } from 'react-toastify';
 
-const Home = () : JSX.Element => {
+const Home = (): JSX.Element => {
 
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(true);
   const [isLogin, setIsLogin] = useState<boolean>(false);
 
   useEffect(() => {
-    if(getJWT() == null) {
+    if (getJWT() == null) {
       setLoading(false);
       router.push('/login');
-    }else{
+    } else {
       setLoading(false);
       setIsLogin(true);
     }
@@ -26,16 +27,31 @@ const Home = () : JSX.Element => {
   return (
     <>
       {loading || !isLogin ? (
-       <Loading />
-      ) 
-      : (
-        <Layout pageTitle="Inicio">
-          <PostStateProvider>
-              <IndexBody />
-          </PostStateProvider>
-        </Layout>
-      )}
-    </>    
+        <Loading />
+      )
+        : (
+          <>
+            <Layout pageTitle="Inicio">
+              <PostStateProvider>
+                <IndexBody />
+              </PostStateProvider>
+            </Layout>
+            <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
+            {/* Same as */}
+            <ToastContainer />
+          </>
+        )}
+    </>
   )
 }
 
