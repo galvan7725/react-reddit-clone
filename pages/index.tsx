@@ -36,19 +36,10 @@ const Home = (): JSX.Element => {
                 <IndexBody />
               </PostStateProvider>
             </Layout>
-            <ToastContainer
-              position="top-right"
-              autoClose={2000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-            />
-            {/* Same as */}
             <ToastContainer />
+            {/* Same as 
+            <ToastContainer />
+            */}
           </>
         )}
     </>

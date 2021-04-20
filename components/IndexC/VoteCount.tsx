@@ -5,12 +5,8 @@ import { Col, Spinner } from 'reactstrap';
 import { VoteCountData } from '../interfaces';
 import { postUpVote,postDownVote } from '../services/PostService';
 import { useChangePostStatus } from '../../context/PostContext';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import ErrorHandler from '../Util/ErrorHandler';
 
-type Action = {type: 'setFalse'} | {type : 'setTrue'};
-type Dispatch = (action : Action) => void;
-type State = {status :  boolean};
 
 const VoteCount = ({voteCount,postId}: VoteCountData ): JSX.Element => {
 
@@ -23,8 +19,8 @@ const VoteCount = ({voteCount,postId}: VoteCountData ): JSX.Element => {
             const response = await postUpVote({postId: postId, voteType: 'UPVOTE'});
             if (response.error || response != 200){
                 console.log(response);
+                ErrorHandler(response.message, response.trace);
             }else{
-                notifyVote();
                 dispatch({type:'changeStatus'});
             }
         } catch (error) {
@@ -38,6 +34,7 @@ const VoteCount = ({voteCount,postId}: VoteCountData ): JSX.Element => {
             const response = await postDownVote({postId: postId, voteType: 'DOWNVOTE'});
             if (response.error || response != 200){
                 console.log(response);
+                ErrorHandler(response.message, response.trace);
             }else{
                 dispatch({type:'changeStatus'});
             }
@@ -47,19 +44,6 @@ const VoteCount = ({voteCount,postId}: VoteCountData ): JSX.Element => {
         }
     }
 
-    const notifyVote = () => {
-        console.log('toast');
-        toast('🦄 Wow so easy!', {
-                                    position: "top-right",
-                                    autoClose: 5000,
-                                    hideProgressBar: false,
-                                    closeOnClick: true,
-                                    pauseOnHover: true,
-                                    draggable: true,
-                                    progress: undefined,
-                                    });     
-
-                                }
     return (
         <Col xs={1} md={1}>
             <div className="votes-container">
