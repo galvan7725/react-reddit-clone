@@ -23,10 +23,9 @@ const VoteCount = ({voteCount,postId}: VoteCountData ): JSX.Element => {
             const response = await postUpVote({postId: postId, voteType: 'UPVOTE'});
             if (response.error || response != 200){
                 console.log(response);
-                dispatch({type: 'setFalse'});
             }else{
                 notifyVote();
-                dispatch({type:'setTrue'});
+                dispatch({type:'changeStatus'});
             }
         } catch (error) {
             //handleVote(false);
@@ -37,11 +36,10 @@ const VoteCount = ({voteCount,postId}: VoteCountData ): JSX.Element => {
     const downVote = async(postId: number): Promise<void> => {
         try {
             const response = await postDownVote({postId: postId, voteType: 'DOWNVOTE'});
-            if (response.error || !response){
+            if (response.error || response != 200){
                 console.log(response);
-                dispatch({type: 'setFalse'});
             }else{
-                dispatch({type:'setTrue'});
+                dispatch({type:'changeStatus'});
             }
         } catch (error) {
             //handleVote(false);

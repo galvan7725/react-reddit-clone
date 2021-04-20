@@ -1,6 +1,6 @@
 import React,{createContext, useContext, useReducer} from 'react';
 
-type Action = {type: 'setFalse'} | {type : 'setTrue'};
+type Action = {type: 'changeStatus'};
 type Dispatch = (action : Action) => void;
 type State = {status :  boolean};
 type PostProviderProps = {children : React.ReactNode}
@@ -11,14 +11,7 @@ const PostsStatusContext = createContext<{state: State; dispatch : Dispatch}| un
 
 function statusReducer (state: State, action : Action){
     switch (action.type) {
-        case 'setTrue':{
-            if(!state.status){
-                return {status: true}
-            }else{
-                return {status: false}
-            }
-        }
-        case 'setFalse':{
+        case 'changeStatus':{
             if(state.status){
                 return {status: false}
             }else{
