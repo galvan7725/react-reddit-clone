@@ -28,7 +28,6 @@ export interface PostData{
 
 export interface VoteCountData {
     voteCount? : number,
-    handleVote: Function,
     postId: number
 }
 

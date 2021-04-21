@@ -14,10 +14,6 @@ const IndexBody = () : JSX.Element => {
     const [loading, setLoading] = useState<boolean>(true);
     const [changeData, setChangeData] = useState<boolean>(false);
 
-    const handleVoteEvent = (success: boolean) : void => {
-        setChangeData(true);
-    }
-
     const {state} =  useChangePostStatus();
 
     const getPostsData = async () : Promise<void> => {
@@ -52,8 +48,8 @@ const IndexBody = () : JSX.Element => {
                             {posts.length > 0 ? (<>
                                 {posts.map((post,i)=>{
                                     return(
-                                        <Col xs={12} md={12}>
-                                                    <PostContainer {...post} {...handleVoteEvent}/>
+                                        <Col xs={12} md={12} key={i}>
+                                                    <PostContainer {...post}/>
                                         </Col> 
                                     )
                                 })}
