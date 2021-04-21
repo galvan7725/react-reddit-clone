@@ -1,5 +1,5 @@
 import React,{ useState, useEffect} from 'react';
-import { Col, Container } from 'reactstrap';
+import { Col, Container, Row } from 'reactstrap';
 import { PostStateProvider, useChangePostStatus } from '../../context/PostContext';
 import { PostData } from '../interfaces';
 import { refreshToken } from '../services/authService';
@@ -44,7 +44,8 @@ const IndexBody = () : JSX.Element => {
                     <Loading/>
                 ) : (
                         <>
-                        <Col xs={12} md={8}>
+                        <Row>
+                        <Col  md={8}>
                             {posts.length > 0 ? (<>
                                 {posts.map((post,i)=>{
                                     return(
@@ -57,9 +58,10 @@ const IndexBody = () : JSX.Element => {
                                 <p>Posts not found</p>
                             </>)}
                         </Col>
-                        <Col xs={12} md={4}>
+                        <Col  md={4}>
                             <Sidebar />
                         </Col>
+                        </Row>
                        </>
                     )
             }

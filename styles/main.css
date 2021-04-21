@@ -85,6 +85,34 @@ body{
   margin-bottom: 5px;
 }
 
+.sidebar-container{
+  margin-top: 5px;
+  padding-right: 15px;
+  padding-left: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header{
+  border: 3px solid rgb(181 173 173);
+  padding: 5px;
+}
+
+.sidebar-header-image{
+  color: gray;
+}
+
+.sidebar-header-image img{
+  width: 100%;
+  border-radius: 5px;
+}
+
+.sidebar-header-body{
+  text-align: center;
+  color: rgb(181 173 173);
+
+}
+
 
 @media (max-width: 768px){
   .title-container{

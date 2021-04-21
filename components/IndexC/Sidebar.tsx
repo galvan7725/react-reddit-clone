@@ -1,9 +1,20 @@
+import Image from 'next/image';
 import React from 'react';
+import { Button } from 'reactstrap';
 
-const Sidebar = () => {
+const Sidebar = () : JSX.Element => {
     return (
-        <div>
-            
+        <div className="sidebar-container">
+            <div className="sidebar-header">
+                <div className="sidebar-header-image">
+                    <Image src="/b1.jpg" alt="SidebarHeader" width={500} height={200} />
+                </div>
+                <div className="sidebar-header-body">
+                    <p>Welcome to Reddit clone using Spring Boot and React. Come here to check in with your favorite subreddits</p>
+                    <Button block color="primary" >CREATE POST</Button>
+                    <Button block color="primary" outline>CREATE SUBREDDIT</Button>
+                </div>
+            </div>
         </div>
     )
 }
