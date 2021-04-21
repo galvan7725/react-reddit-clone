@@ -3,7 +3,7 @@ import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Col, Spinner } from 'reactstrap';
 import { VoteCountData } from '../interfaces';
-import { postUpVote,postDownVote } from '../services/PostService';
+import { setVote } from '../services/PostService';
 import { useChangePostStatus } from '../../context/PostContext';
 import ErrorHandler from '../Util/ErrorHandler';
 
@@ -16,7 +16,7 @@ const VoteCount = ({voteCount,postId}: VoteCountData ): JSX.Element => {
 
     const upVote = async(postId:number) : Promise<void> => {
         try {
-            const response = await postUpVote({postId: postId, voteType: 'UPVOTE'});
+            const response = await setVote({postId: postId, voteType: 'UPVOTE'});
             if (response.error || response != 200){
                 console.log(response);
                 ErrorHandler(response.message, response.trace);
@@ -31,7 +31,7 @@ const VoteCount = ({voteCount,postId}: VoteCountData ): JSX.Element => {
 
     const downVote = async(postId: number): Promise<void> => {
         try {
-            const response = await postDownVote({postId: postId, voteType: 'DOWNVOTE'});
+            const response = await setVote({postId: postId, voteType: 'DOWNVOTE'});
             if (response.error || response != 200){
                 console.log(response);
                 ErrorHandler(response.message, response.trace);
