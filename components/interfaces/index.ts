@@ -46,3 +46,11 @@ export interface voteData{
     postId: number,
     voteType : "UPVOTE" | "DOWNVOTE"
 }
+
+
+export interface subredditData {
+    id: number,
+    description: string,
+    name: string,
+    numberOfPosts: number
+}

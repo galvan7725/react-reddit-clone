@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { Button } from 'reactstrap';
+import SubredditListHome from './SubredditListHome';
 
 const Sidebar = () : JSX.Element => {
     return (
@@ -15,6 +16,13 @@ const Sidebar = () : JSX.Element => {
                     <Button block color="primary" outline>CREATE SUBREDDIT</Button>
                 </div>
             </div>
+            <div className="sidebar-footer">
+                <div className="sidebar-footer-title">
+                    <h3>Browse Subreddits</h3>
+                </div>
+                <SubredditListHome />
+            </div>
+            
         </div>
     )
 }

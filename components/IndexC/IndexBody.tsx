@@ -45,7 +45,7 @@ const IndexBody = () : JSX.Element => {
                 ) : (
                         <>
                         <Row>
-                        <Col  md={8}>
+                        <Col  md={8} >
                             {posts.length > 0 ? (<>
                                 {posts.map((post,i)=>{
                                     return(
