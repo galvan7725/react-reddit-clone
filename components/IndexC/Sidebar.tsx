@@ -1,9 +1,13 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { Button } from 'reactstrap';
 import SubredditListHome from './SubredditListHome';
 
 const Sidebar = () : JSX.Element => {
+
+    const router = useRouter();
+
     return (
         <div className="sidebar-container">
             <div className="sidebar-header">
@@ -12,13 +16,14 @@ const Sidebar = () : JSX.Element => {
                 </div>
                 <div className="sidebar-header-body">
                     <p>Welcome to Reddit clone using Spring Boot and React. Come here to check in with your favorite subreddits</p>
-                    <Button block color="primary" >CREATE POST</Button>
+                    <Button block color="primary" onClick={()=>{router.push('/create_post')}} >CREATE POST</Button>
                     <Button block color="primary" outline>CREATE SUBREDDIT</Button>
                 </div>
             </div>
             <div className="sidebar-footer">
                 <div className="sidebar-footer-title">
-                    <h3>Browse Subreddits</h3>
+                    <h5>Browse Subreddits</h5>
+                    <hr style={{width:'100%'}}/>
                 </div>
                 <SubredditListHome />
             </div>

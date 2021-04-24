@@ -11,6 +11,13 @@ const SubredditListHome = () => {
     const [subreddits, setSubreddits] = useState<Array<subredditData>>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
+    const formatSubreddits =(subreddits_ : Array<subredditData>) : Array<subredditData> =>{
+        if(subreddits_.length > 3){
+            return subreddits_.slice(0, 3);
+        }else{
+            return subreddits_;
+        }
+    }
 
     const getSubredditsData = async () : Promise<void> =>{
         try {
@@ -41,12 +48,17 @@ const SubredditListHome = () => {
                 <Spinner color="primary" />
                 </div>
             </>) :  (<>
-                    {subreddits.length > 0 ? (<>
+                    {formatSubreddits.length > 0 ? (<>
                         {subreddits.map((subreddit,i) =>(
                             <div className="subreddit-item" key={i}>
-                                <Link  href={`/subreddit/${subreddit.id}`}><span>{subreddit.name}</span></Link>
+                                <Link  href={`/subreddit/${subreddit.id}`}><span className="subreddit-link">{subreddit.name}</span></Link>
                             </div>
                         ))}
+                        {subreddits.length > 3 ? (
+                            <div>
+                                <Link href={`/subreddits/all`}><span className="subreddit-link">View all</span></Link>
+                            </div>
+                        ) : (<></>)}
                     </>) : 
                     (<div>Subreddits not found</div>)}
             </>)}

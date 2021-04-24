@@ -113,6 +113,16 @@ body{
 
 }
 
+.sidebar-footer{
+  border: 3px solid rgb(181 173 173);
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.subreddit-link{
+  cursor:pointer;
+  color: rgb(85, 82, 241);
+}
 
 @media (max-width: 768px){
   .title-container{
