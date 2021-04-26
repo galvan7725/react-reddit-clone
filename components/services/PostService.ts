@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { voteData } from '../interfaces';
+import { createPostData, voteData } from '../interfaces';
 import { getJWT, refreshToken } from './authService';
 
 const BASE_URL = 'http://localhost:8080/api';
@@ -89,4 +89,20 @@ export const postDownVote = (voteData: voteData): Promise<any> => {
         return response.data ? response.data : response.status;
     }).catch((error) => { return error.response.data });
 
+}
+
+
+export const createPost = (data : createPostData) : Promise<any> => {
+    const { authenticationToken } = getJWT();
+    return axios({
+        method: 'POST',
+        url: `${BASE_URL}/posts`,
+        headers: {
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${authenticationToken}`
+        },
+        data: data
+    }).then((response) => {
+        return response.data ? response.data : response.status;
+    }).catch((error) => { return error.response.data });
 }

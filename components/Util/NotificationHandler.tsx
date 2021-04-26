@@ -16,3 +16,10 @@ export const downVoteAlreadyExists = () : void =>{
         autoClose:2000
     })
 }
+
+export const createPostSuccess = () : void =>{
+    toast.success("Post created successfully",{
+        position:toast.POSITION.TOP_RIGHT,
+        autoClose:2000
+    })
+}

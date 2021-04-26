@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 import Loading from '../components/shared/Loading';
 import IndexBody from '../components/IndexC/IndexBody';
 import { PostStateProvider } from '../context/PostContext';
-import { ToastContainer } from 'react-toastify';
 
 const Home = (): JSX.Element => {
 
@@ -36,7 +35,6 @@ const Home = (): JSX.Element => {
                 <IndexBody />
               </PostStateProvider>
             </Layout>
-            <ToastContainer />
             {/* Same as 
             <ToastContainer />
             */}

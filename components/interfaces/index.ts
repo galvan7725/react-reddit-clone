@@ -54,3 +54,11 @@ export interface subredditData {
     name: string,
     numberOfPosts: number
 }
+
+export interface createPostData{
+    id : number,
+    postName: string,
+    subredditName: string,
+    description: string,
+    url: string
+}

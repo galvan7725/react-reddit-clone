@@ -2,6 +2,7 @@ import React from 'react'
 import { Container } from 'reactstrap';
 import Header from './Header';
 import Head from 'next/head';
+import { ToastContainer } from 'react-toastify';
 
 interface Props{
     children: JSX.Element,
@@ -17,6 +18,7 @@ const Layout = ({children, pageTitle}: Props ): JSX.Element=> {
             </Head>
             <Header />
             {children}
+            <ToastContainer />
         </Container>
     )
    }

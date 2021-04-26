@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormFeedback,FormGroup, Input, Label } from 'reactstrap';
 
-const FormikInput =  ({
+const FormikInputSelect =  ({
     field: {...fields},
     form:{touched, errors, ...rest},
     ...props
@@ -25,4 +25,4 @@ const FormikInput =  ({
 
 
 
-export default FormikInput;
+export default FormikInputSelect;
