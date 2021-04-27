@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/shared/Layout';
-import { Row } from 'reactstrap';
-import { getJWT } from '../components/services/authService';
 import { useRouter } from 'next/router';
 import Loading from '../components/shared/Loading';
 import IndexBody from '../components/IndexC/IndexBody';
 import { PostStateProvider } from '../context/PostContext';
+import Security from '../security/Security';
 
 const Home = (): JSX.Element => {
 
@@ -13,8 +12,11 @@ const Home = (): JSX.Element => {
   const [loading, setLoading] = useState<boolean>(true);
   const [isLogin, setIsLogin] = useState<boolean>(false);
 
+  
+
   useEffect(() => {
-    if (getJWT() == null) {
+    const security =  new Security();
+    if (!security.verifyToken()) {
       setLoading(false);
       router.push('/login');
     } else {
