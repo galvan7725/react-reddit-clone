@@ -29,6 +29,8 @@ export interface PostData{
 export interface VoteCountData {
     voteCount? : number,
     postId: number
+    upVote: boolean,
+    downVote: boolean
 }
 
 export interface postHeaderData{

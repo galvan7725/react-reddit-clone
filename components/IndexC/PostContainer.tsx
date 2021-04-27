@@ -17,7 +17,7 @@ const PostTitle = (data: PostData): JSX.Element => {
         <>
             <Container className="post-container">
                 <Row>
-                        <VoteCount {...{voteCount:data.voteCount,postId:data.id}} />
+                        <VoteCount {...{voteCount:data.voteCount,postId:data.id,upVote:data.upVote,downVote:data.downVote}} />
                         <PostHeader {...{subredditName:data.subredditName,userName:data.userName,duration:data.duration}} />
                         <PostBody {...{postName:data.postName,description:data.description}} />
                         <PostFooter {...{commentCount:data.commentCount,id:data.id}} />

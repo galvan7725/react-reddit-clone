@@ -8,13 +8,13 @@ import { useChangePostStatus } from '../../context/PostContext';
 import ErrorHandler from '../Util/ErrorHandler';
 
 
-const VoteCount = ({voteCount,postId}: VoteCountData ): JSX.Element => {
+const VoteCount = ({voteCount,postId,upVote,downVote}: VoteCountData ): JSX.Element => {
 
     const [loading, setLoading] = useState<boolean>(false);
 
     const {dispatch} = useChangePostStatus();
 
-    const upVote = async(postId:number) : Promise<void> => {
+    const upVoteCall = async(postId:number) : Promise<void> => {
         try {
             const response = await setVote({postId: postId, voteType: 'UPVOTE'});
             if (response.error || response != 200){
@@ -29,7 +29,7 @@ const VoteCount = ({voteCount,postId}: VoteCountData ): JSX.Element => {
         }
     }
 
-    const downVote = async(postId: number): Promise<void> => {
+    const downVoteCall = async(postId: number): Promise<void> => {
         try {
             const response = await setVote({postId: postId, voteType: 'DOWNVOTE'});
             if (response.error || response != 200){
@@ -44,18 +44,26 @@ const VoteCount = ({voteCount,postId}: VoteCountData ): JSX.Element => {
         }
     }
 
+    const voteUpButtonStyle = {
+        color: upVote ? 'blue' : 'black'
+    }
+
+    const voteDownButtonStyle = {
+        color: downVote ? 'blue' : 'black'
+    }
+
     return (
         <Col xs={1} md={1}>
             <div className="votes-container">
                 <div className="votes-section">
                     {loading ? (<><Spinner color="primary" /></>) :
-                     (<span className="vote-icons" onClick={()=>{upVote(postId)}}><FontAwesomeIcon icon={faArrowUp} /></span>)}
+                     (<span className="vote-icons" onClick={()=>{upVoteCall(postId)}} style={voteUpButtonStyle}><FontAwesomeIcon icon={faArrowUp} /></span>)}
                 </div>
                 <div className="votes-section">
                     <div>{voteCount == null ? 0 : voteCount}</div>
                 </div>
                 <div className="votes-section">
-                    <span className="vote-icons" onClick={()=>{downVote(postId)}}><FontAwesomeIcon icon={faArrowDown} /></span>
+                    <span className="vote-icons" onClick={()=>{downVoteCall(postId)}} style={voteDownButtonStyle}><FontAwesomeIcon icon={faArrowDown} /></span>
              
                 </div>
                 
