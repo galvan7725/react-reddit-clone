@@ -160,7 +160,7 @@ const CreatePostForm = () => {
                     {subreddits.length > 0 ? (
                         <>
                         {subreddits.map((subreddit,i)=>(
-                            <><option value={subreddit.name} key={i}>{subreddit.name}</option></>
+                            <option key={i} value={subreddit.name}>{subreddit.name}</option>
                         ))}
                         </>
                     ) :
