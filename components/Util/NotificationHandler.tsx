@@ -23,3 +23,10 @@ export const createPostSuccess = () : void =>{
         autoClose:2000
     })
 }
+
+export const createSubredditSuccess = () : void =>{
+    toast.success("Subreddit created successfully",{
+        position:toast.POSITION.TOP_RIGHT,
+        autoClose:2000
+    })
+}

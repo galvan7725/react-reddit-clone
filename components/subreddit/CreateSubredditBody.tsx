@@ -3,10 +3,12 @@ import { Field, Form, Formik, FormikHelpers } from 'formik';
 import AuthForm from '../shared/AuthForm';
 import * as Yup from 'yup';
 import MyInput from '../shared/FormikInput';
-import { Button } from 'reactstrap';
+import { Button, Col, Row, Spinner } from 'reactstrap';
 import { subredditData } from '../interfaces';
 import { createSubreddit } from '../services/subredditservice';
 import { useRouter } from 'next/router';
+import { createSubredditSuccess } from '../Util/NotificationHandler';
+import PostsSidebarList from './PostsSidebarList';
 
 const CreateSubredditBody = () : JSX.Element=> {
 
@@ -21,11 +23,15 @@ const CreateSubredditBody = () : JSX.Element=> {
 
     const createSubredditCall = async(values : subredditData) : Promise<void> => {
         try {
+            setLoading(true);
             const response = await createSubreddit(values);
             if(response == null || response.error){
+                setLoading(false);
                 throw new Error(response);
             }else{
-                console.log('subreddit created successfully');
+                setLoading(false);
+                createSubredditSuccess();
+                router.push('/subreddits');
             }
         } catch (error) {
             console.log(error);
@@ -33,6 +39,8 @@ const CreateSubredditBody = () : JSX.Element=> {
     }
 
     return (
+        <Row style={{marginTop:'5px'}}>
+          <Col xs={12} md={6}>
         <AuthForm formTitle="Create Subreddit">
             <Formik
             initialValues={{
@@ -48,13 +56,20 @@ const CreateSubredditBody = () : JSX.Element=> {
                     <Form>
                         <Field type="text" label="Subreddit Name" name="name" component={MyInput}  />
                         <Field type="textarea" label="Description" name="description" component={MyInput}/>
-                        <Button type="submit" color="primary">Create</Button>
-                        <Button type="button"  color="danger" onClick={() =>{}} style={{marginLeft:'5px'}}>Cancel</Button>
+                        {loading  ? 
+                        <Spinner color="primary" />:
+                        <Button type="submit" color="primary" disabled={loading}>Create</Button>}
+                        <Button type="button"  color="danger" disabled={loading} onClick={() =>{router.push('/subreddits')}} style={{marginLeft:'5px'}}>Cancel</Button>
                     </Form>
                 )}
 
             </Formik>
         </AuthForm>
+        </Col>
+        <Col xs={12} md={4}>
+            <PostsSidebarList />
+        </Col>
+        </Row>
     )
 }
 

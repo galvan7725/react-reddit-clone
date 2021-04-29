@@ -124,6 +124,26 @@ body{
   color: rgb(85, 82, 241);
 }
 
+.subreddits-sidebar-container{
+  margin-top: 30px;
+  border: 1px solid #000;
+}
+
+.subreddits-sidebar-container hr{
+  width: 100%;
+}
+
+.subreddits-sidebar-title{
+  display: flex;
+  padding: 5px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.subreddits-sidebar-list{
+  color: rgb(181 173 173);
+}
+
 @media (max-width: 768px){
   .title-container{
     flex-direction: column;
