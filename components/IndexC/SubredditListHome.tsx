@@ -49,13 +49,16 @@ const SubredditListHome = () => {
                 </div>
             </>) :  (<>
                     {formatSubreddits.length > 0 ? (<>
-                        {subreddits.map((subreddit,i) =>(
+                        {formatSubreddits(subreddits).map((subreddit,i) =>(
+                            <>
                             <div className="subreddit-item" key={i}>
                                 <Link  href={`/subreddit/${subreddit.id}`}><span className="subreddit-link">{subreddit.name}</span></Link>
                             </div>
+                            <hr/>
+                            </>
                         ))}
                         {subreddits.length > 3 ? (
-                            <div>
+                            <div className="subreddit-list-link">
                                 <Link href={`/subreddits/all`}><span className="subreddit-link">View all</span></Link>
                             </div>
                         ) : (<></>)}
