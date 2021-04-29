@@ -5,7 +5,7 @@ import Layout from '../components/shared/Layout';
 import Security from '../security/Security';
 import Loading from '../components/shared/Loading';
 
-const createPost = () => {
+const createPost = () : JSX.Element=> {
 
     const router = useRouter();
 
