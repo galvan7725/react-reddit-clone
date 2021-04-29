@@ -17,7 +17,7 @@ const Sidebar = () : JSX.Element => {
                 <div className="sidebar-header-body">
                     <p>Welcome to Reddit clone using Spring Boot and React. Come here to check in with your favorite subreddits</p>
                     <Button block color="primary" onClick={()=>{router.push('/create_post')}} >CREATE POST</Button>
-                    <Button block color="primary" outline>CREATE SUBREDDIT</Button>
+                    <Button block color="primary" outline onClick={()=>{router.push('/create_subreddit')}}>CREATE SUBREDDIT</Button>
                 </div>
             </div>
             <div className="sidebar-footer">

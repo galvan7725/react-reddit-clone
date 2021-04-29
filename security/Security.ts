@@ -2,9 +2,9 @@ import { getJWT } from "../components/services/authService";
 
 
 class Security {
-    expirationDate : number;
+    expirationDate? : number;
     constructor(){
-        this.expirationDate = +getJWT().expiresAt.toString().replace('.','');
+        getJWT() != null ?  this.expirationDate = +getJWT().expiresAt.toString().replace('.','') :  null;
     }
 
     public verifyToken() : boolean{
