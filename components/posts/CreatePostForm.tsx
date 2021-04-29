@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react'
-import {FormGroup, Label, Input, FormFeedback, Spinner, Button } from 'reactstrap';
+import {FormGroup, Label, Input, FormFeedback, Spinner, Button, Row, Col } from 'reactstrap';
 import { createPostData, subredditData } from '../interfaces';
 import AuthForm from '../shared/AuthForm';
 import { getSubreddits } from '../services/subredditservice';
@@ -143,6 +143,8 @@ const CreatePostForm = () => {
     }
 
     return (
+        <Row style={{marginTop:'5px'}}>
+          <Col xs={12} md={{size:6, order:2 , offset:3}}>
         <AuthForm formTitle="Create Post">
             <>
             <form onSubmit={submit}>
@@ -189,6 +191,8 @@ const CreatePostForm = () => {
             </form>
             </>
         </AuthForm>
+        </Col>
+        </Row>
     )
 }
 

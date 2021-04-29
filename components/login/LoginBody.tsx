@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AuthForm from '../shared/AuthForm';
 import { Formik, Form, Field, FormikHelpers } from 'formik';
-import { Alert, Button, Spinner } from 'reactstrap';
+import { Alert, Button, Col, Row, Spinner } from 'reactstrap';
 import Link from 'next/link';
 import * as Yup from 'yup';
 import MyInput from '../shared/FormikInput';
@@ -69,6 +69,8 @@ const LoginBody = (): JSX.Element=> {
   }
     return (
         <>
+        <Row style={{marginTop:'5px'}}>
+          <Col xs={12} md={{size:6, order:2 , offset:3}}>
           <AuthForm formTitle="Login">
                       <Formik
                         initialValues={{
@@ -95,7 +97,9 @@ const LoginBody = (): JSX.Element=> {
                               </Form>
                           )}  
                           </Formik>
-          </AuthForm>  
+          </AuthForm> 
+          </Col>
+          </Row>
         </>
     )
 }

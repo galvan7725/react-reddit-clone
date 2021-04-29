@@ -73,6 +73,8 @@ const Signup = () : JSX.Element => {
 
     return (
         <>
+        <Row style={{marginTop:'5px'}}>
+          <Col xs={12} md={{size:6, order:2 , offset:3}}>
           <AuthForm formTitle="Resgister">
                     <Formik
                         initialValues={{
@@ -101,7 +103,9 @@ const Signup = () : JSX.Element => {
                               </Form>
                           )}  
                         </Formik>
-          </AuthForm>      
+          </AuthForm> 
+        </Col>
+        </Row>
         </>
     )
 }

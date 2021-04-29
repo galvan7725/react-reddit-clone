@@ -9,8 +9,6 @@ interface Props{
 const AuthForm = ({children, formTitle}: Props) => {
     return (
         <>
-          <Row style={{marginTop:'5px'}}>
-             <Col xs={12} md={{size:6, order:2 , offset:3}}>
                 <div className="form-container">
                     <Container className="form-title text-center" style={{backgroundColor:'#f8f9fa'}}>
                         <Col xs={12} md={{size:6, order:2, offset:3}}>
@@ -45,9 +43,7 @@ const AuthForm = ({children, formTitle}: Props) => {
                         </Formik>
                         */}
                     </Container>
-                </div>
-             </Col>
-          </Row>    
+                </div> 
         </>
     )
 }
