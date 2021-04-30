@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react'
 import Layout from '../components/shared/Layout';
+import ListSubreddits from '../components/subreddit/ListSubreddits';
 import Security from '../security/Security';
 
 const subreddits = () => {
@@ -18,7 +19,7 @@ const subreddits = () => {
 
     return (
         <Layout pageTitle="Subreddits">
-            <h1>Subreddits</h1>
+            <ListSubreddits />
         </Layout>
     )
 }
