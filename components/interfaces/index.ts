@@ -65,7 +65,7 @@ export interface createPostData{
     url: string
 }
 
-export interface createCommentPayload{
+export interface commentPayload{
     id: number,
     postId: number,
     text: string,

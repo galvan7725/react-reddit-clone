@@ -2,7 +2,7 @@ import { Field, Form, Formik, FormikHelpers } from 'formik';
 import React, { useState } from 'react'
 import { Button, Col, Row, Spinner } from 'reactstrap';
 import * as Yup from 'yup';
-import { createCommentPayload } from '../interfaces';
+import { commentPayload } from '../interfaces';
 import { createComment } from '../services/commentService';
 import MyInput from '../shared/FormikInput';
 
@@ -22,7 +22,7 @@ const CreateCommentForm = ({postId} : _postId): JSX.Element => {
     const [loading, setLoading] = useState<boolean>(false);
 
 
-    const createCommentCall = async(data :createCommentPayload) : Promise<void> => {
+    const createCommentCall = async(data :commentPayload) : Promise<void> => {
         try {
             setLoading(true);
             const response = await createComment(data);
@@ -50,7 +50,7 @@ const CreateCommentForm = ({postId} : _postId): JSX.Element => {
                    userName:''
                }}
                validationSchema={creareCommentSchema}
-               onSubmit={(values : createCommentPayload, actions:FormikHelpers<createCommentPayload>)=>createCommentCall(values)}
+               onSubmit={(values : commentPayload, actions:FormikHelpers<commentPayload>)=>createCommentCall(values)}
                >
                    {({errors, touched})=>(
                        <Form>
