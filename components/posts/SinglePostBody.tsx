@@ -7,6 +7,7 @@ import VoteCount from '../IndexC/VoteCount';
 import { PostData } from '../interfaces';
 import { getPostById } from '../services/PostService';
 import Loading from '../shared/Loading';
+import CommentsList from './CommentsList';
 import CreateCommentForm from './CreateCommentForm';
 
 interface _post{
@@ -60,6 +61,7 @@ const SinglePostBody = ({postId}: _post) => {
                            </Row>
                             <PostBody {...{postName:post.postName,description:post.description}} />
                             <CreateCommentForm postId={postId}/>
+                            <CommentsList postId={postId} />
                     </Container>
                 </Col>
             </Row>
