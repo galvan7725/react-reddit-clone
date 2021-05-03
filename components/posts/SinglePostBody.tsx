@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useState, useEffect} from 'react'
-import { Col, Container, Row } from 'reactstrap';
+import { Col, Container, Row, Spinner } from 'reactstrap';
+import { useChangePostStatus } from '../../context/PostContext';
 import PostBody from '../IndexC/PostBody';
 import PostHeader from '../IndexC/PostHeader';
 import VoteCount from '../IndexC/VoteCount';
@@ -16,6 +17,7 @@ interface _post{
 
 const SinglePostBody = ({postId}: _post) => {
 
+    const {state} =  useChangePostStatus();
 
     const [post,setPost] = useState<PostData>();
     const [loading, setLoading] = useState<boolean>(true);
@@ -47,7 +49,7 @@ const SinglePostBody = ({postId}: _post) => {
         return () => {
             setPost(null);
         }
-    }, [])
+    }, [state.status])
 
     return (
         <>
@@ -55,13 +57,15 @@ const SinglePostBody = ({postId}: _post) => {
                 <Row style={{ marginTop: '5px' }}>
                 <Col xs={12} md={12}>
                     <Container className="post-container">
-                           <Row>
-                           <VoteCount {...{voteCount:post.voteCount,postId:post.id,upVote:post.upVote,downVote:post.downVote}} />
-                            <PostHeader {...{subredditName:post.subredditName,userName:post.userName,duration:post.duration}} />
-                           </Row>
-                            <PostBody {...{postName:post.postName,description:post.description}} />
-                            <CreateCommentForm postId={postId}/>
-                            <CommentsList postId={postId} />
+                           {post ? (<>
+                                <Row>
+                                    <VoteCount {...{voteCount:post.voteCount,postId:post.id,upVote:post.upVote,downVote:post.downVote}} />
+                                    <PostHeader {...{subredditName:post.subredditName,userName:post.userName,duration:post.duration}} />
+                                </Row>
+                                <PostBody {...{postName:post.postName,description:post.description}} />
+                                <CreateCommentForm postId={postId}/>
+                                <CommentsList postId={postId} />
+                           </>) : (<><Spinner color="primary" /></>)}
                     </Container>
                 </Col>
             </Row>

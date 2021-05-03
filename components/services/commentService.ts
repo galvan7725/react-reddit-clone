@@ -4,7 +4,7 @@ import { getJWT } from "./authService";
 
 const BASE_URL = 'http://localhost:8080/api';
 
-export const createComment = async(commentPayload: commentPayload): Promise<AxiosResponse> => {
+export const createComment = async(commentPayload: commentPayload): Promise<any> => {
     const {authenticationToken} = getJWT();
     try {
         const response = await axios({
@@ -22,7 +22,7 @@ export const createComment = async(commentPayload: commentPayload): Promise<Axio
     }
 }
 
-export const getCommentsByPost = (postId: number) : Promise<AxiosResponse> =>{
+export const getCommentsByPost = (postId: number) : Promise<any> =>{
     const {authenticationToken} = getJWT();
     return axios({
         method: 'GET',

@@ -69,6 +69,6 @@ export interface commentPayload{
     id: number,
     postId: number,
     text: string,
-    createdDate:string,
+    createdDate: number,
     userName:string
 }

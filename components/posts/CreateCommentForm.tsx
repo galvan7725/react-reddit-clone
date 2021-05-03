@@ -2,6 +2,7 @@ import { Field, Form, Formik, FormikHelpers } from 'formik';
 import React, { useState } from 'react'
 import { Button, Col, Row, Spinner } from 'reactstrap';
 import * as Yup from 'yup';
+import { useChangePostStatus } from '../../context/PostContext';
 import { commentPayload } from '../interfaces';
 import { createComment } from '../services/commentService';
 import MyInput from '../shared/FormikInput';
@@ -21,17 +22,21 @@ const CreateCommentForm = ({postId} : _postId): JSX.Element => {
 
     const [loading, setLoading] = useState<boolean>(false);
 
+    const {dispatch} = useChangePostStatus();
+
 
     const createCommentCall = async(data :commentPayload) : Promise<void> => {
         try {
             setLoading(true);
             const response = await createComment(data);
-            if (response == null || !response.data) {
+            if (response == null || response.error) {
                 console.log(response);
                 setLoading(false);
             }else{
                 console.log(response);
                 setLoading(false);
+                console.log('Comment created successfully')
+                dispatch({type:'changeStatus'});
             }
         } catch (error) {
             console.log(error);
@@ -46,7 +51,7 @@ const CreateCommentForm = ({postId} : _postId): JSX.Element => {
                    text:'',
                    postId:postId,
                    id:0,
-                   createdDate:'',
+                   createdDate:0,
                    userName:''
                }}
                validationSchema={creareCommentSchema}
