@@ -33,7 +33,7 @@ const CreateCommentForm = ({postId} : _postId): JSX.Element => {
                >
                    {({errors, touched})=>(
                        <Form>
-                           <Field type="text" label="" name="text" component={MyInput}/>
+                           <Field type="text" label="" name="text" placeholder="Write a comment" component={MyInput}/>
                            <Button type="submit" color="success" disabled={false}>Comment</Button>
                        </Form>
                    )}
