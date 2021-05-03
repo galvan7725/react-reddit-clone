@@ -106,3 +106,17 @@ export const createPost = (data : createPostData) : Promise<any> => {
         return response.data ? response.data : response.status;
     }).catch((error) => { return error.response.data });
 }
+
+
+export const getPostById = (id: number) : Promise<any> =>{
+    const { authenticationToken} = getJWT();
+    return axios({
+        method: 'GET',
+        url: `${BASE_URL}/posts/${id}`,
+        headers: {
+            'Authorization': `Bearer ${authenticationToken}`
+        }
+    }).then((response) => {
+        return response.data ? response.data : response.status;
+    }).catch((error) => { return error.response.data });
+}
