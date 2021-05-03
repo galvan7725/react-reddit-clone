@@ -1,8 +1,9 @@
 import { Field, Form, Formik, FormikHelpers } from 'formik';
-import React from 'react'
-import { Button, Col, Row } from 'reactstrap';
+import React, { useState } from 'react'
+import { Button, Col, Row, Spinner } from 'reactstrap';
 import * as Yup from 'yup';
 import { createCommentPayload } from '../interfaces';
+import { createComment } from '../services/commentService';
 import MyInput from '../shared/FormikInput';
 
 interface _postId{
@@ -17,6 +18,26 @@ const CreateCommentForm = ({postId} : _postId): JSX.Element => {
         createdDate: Yup.string(),
         userName : Yup.string()
     })
+
+    const [loading, setLoading] = useState<boolean>(false);
+
+
+    const createCommentCall = async(data :createCommentPayload) : Promise<void> => {
+        try {
+            setLoading(true);
+            const response = await createComment(data);
+            if (response == null || !response.data) {
+                console.log(response);
+                setLoading(false);
+            }else{
+                console.log(response);
+                setLoading(false);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <Row>
            <Col xs={12} md={{size:11, order:2, offset:1}}>
@@ -29,12 +50,13 @@ const CreateCommentForm = ({postId} : _postId): JSX.Element => {
                    userName:''
                }}
                validationSchema={creareCommentSchema}
-               onSubmit={(values : createCommentPayload, actions:FormikHelpers<createCommentPayload>)=>console.log('submit',JSON.stringify(values))}
+               onSubmit={(values : createCommentPayload, actions:FormikHelpers<createCommentPayload>)=>createCommentCall(values)}
                >
                    {({errors, touched})=>(
                        <Form>
                            <Field type="text" label="" name="text" placeholder="Write a comment" component={MyInput}/>
-                           <Button type="submit" color="success" disabled={false}>Comment</Button>
+                           <Button type="submit" color="primary" disabled={loading}>Comment</Button>
+                           {loading ? <Spinner color="primary"/> : null}
                        </Form>
                    )}
                </Formik>
