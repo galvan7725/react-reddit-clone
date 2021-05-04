@@ -40,7 +40,8 @@ const SinglePostBody = ({postId}: _post) => {
     const router = useRouter();
 
     useEffect(() => {
-        if(postId == null || postId === undefined){
+        //if(postId == null || postId === undefined){
+        if(!router.isReady){
             console.log('null')
         }else{
             console.log(postId);

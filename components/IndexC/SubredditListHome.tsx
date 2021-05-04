@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Spinner } from 'reactstrap';
 import { subredditData } from '../interfaces'
 import { getSubreddits } from '../services/subredditservice';
@@ -50,12 +50,12 @@ const SubredditListHome = () => {
             </>) :  (<>
                     {formatSubreddits.length > 0 ? (<>
                         {formatSubreddits(subreddits).map((subreddit,i) =>(
-                            <>
-                            <div className="subreddit-item" key={i}>
+                            <Fragment key={i}>
+                            <div className="subreddit-item">
                                 <Link  href={`/subreddit/${subreddit.id}`}><span className="subreddit-link">{subreddit.name}</span></Link>
                             </div>
                             <hr/>
-                            </>
+                            </Fragment>
                         ))}
                         {subreddits.length > 3 ? (
                             <div className="subreddit-list-link">
