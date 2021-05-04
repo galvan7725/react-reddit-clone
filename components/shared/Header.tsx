@@ -65,7 +65,7 @@ const Header = (): JSX.Element => {
                                     <div className="dropdown-container">
                                         <Dropdown isOpen={dropdownOpen} toggle={toggleD} style={{ alignSelf: 'center' }}>
                                             <DropdownToggle caret style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent', color: 'blue', border: '1px solid blue' }}>
-                                                <Image src="/reddit.png" alt="RedditIcon" width={50} height={50} />
+                                                <Image src="/reddit_user.png" alt="RedditIcon" width={50} height={50} />
                                                 <span>{security.getUserName()}</span>
                                             </DropdownToggle>
                                             <DropdownMenu>
