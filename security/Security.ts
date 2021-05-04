@@ -18,6 +18,14 @@ class Security {
         }
     }
 
+    public getUserName = () : string =>{
+        if(getJWT().username == null){
+            return null;
+        }else{
+            return getJWT().username;
+        }
+    }
+
 }
 
 export default Security;
