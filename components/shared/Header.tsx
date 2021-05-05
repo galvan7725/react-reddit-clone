@@ -16,6 +16,7 @@ import {
 } from 'reactstrap';
 import Image from 'next/image';
 import Security from '../../security/Security';
+import Link from 'next/link';
 
 const Header = (): JSX.Element => {
 
@@ -68,7 +69,7 @@ const Header = (): JSX.Element => {
                                                 <span>{security.getUserName()}</span>
                                             </DropdownToggle>
                                             <DropdownMenu>
-                                                <DropdownItem>Profile</DropdownItem>
+                                                <DropdownItem><Link href={`/user_profile/${security.getUserName()}`}><span>Profile</span></Link></DropdownItem>
                                                 <DropdownItem divider />
                                                 <DropdownItem>Logout</DropdownItem>
                                             </DropdownMenu>
