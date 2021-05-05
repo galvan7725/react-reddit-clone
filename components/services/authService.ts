@@ -1,7 +1,6 @@
 import { JWTData } from "../interfaces";
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8080/api';
 
 export const getJWT = () : JWTData | null =>{
     if(typeof window == "undefined"){
@@ -19,7 +18,7 @@ export const refreshToken = (): Promise<any> =>{
     const {refreshToken,username} = getJWT();
     return axios({
         method:'POST',
-        url: `${BASE_URL}/auth/refresh/token`,
+        url: `${process.env.NEXT_PUBLIC_API_HOST}/auth/refresh/token`,
         headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json"

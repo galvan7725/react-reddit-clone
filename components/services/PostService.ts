@@ -2,7 +2,6 @@ import axios from 'axios';
 import { createPostData, voteData } from '../interfaces';
 import { getJWT, refreshToken } from './authService';
 
-const BASE_URL = 'http://localhost:8080/api';
 
 export const getAllPosts = async (): Promise<any> => {
     try {
@@ -29,7 +28,7 @@ const getAllPostsCall = (): Promise<any> => {
     console.log(authenticationToken);
     return axios({
         method: 'GET',
-        url: `${BASE_URL}/posts/`,
+        url: `${process.env.NEXT_PUBLIC_API_HOST}/posts/`,
         headers: {
             'Authorization': `Bearer ${authenticationToken}`
         }
@@ -43,7 +42,7 @@ export const setVote = (voteData: voteData): Promise<any> => {
 
     return axios({
         method: 'POST',
-        url: `${BASE_URL}/votes/`,
+        url: `${process.env.NEXT_PUBLIC_API_HOST}/votes/`,
         headers: {
             'Accept': 'application/json',
             'Authorization': `Bearer ${authenticationToken}`
@@ -61,7 +60,7 @@ export const postUpVote = (voteData: voteData): Promise<any> => {
 
     return axios({
         method: 'POST',
-        url: `${BASE_URL}/votes/`,
+        url: `${process.env.NEXT_PUBLIC_API_HOST}/votes/`,
         headers: {
             'Accept': 'application/json',
             'Authorization': `Bearer ${authenticationToken}`
@@ -79,7 +78,7 @@ export const postDownVote = (voteData: voteData): Promise<any> => {
 
     return axios({
         method: 'POST',
-        url: `${BASE_URL}/votes/`,
+        url: `${process.env.NEXT_PUBLIC_API_HOST}/votes/`,
         headers: {
             'Accept': 'application/json',
             'Authorization': `Bearer ${authenticationToken}`
@@ -96,7 +95,7 @@ export const createPost = (data : createPostData) : Promise<any> => {
     const { authenticationToken } = getJWT();
     return axios({
         method: 'POST',
-        url: `${BASE_URL}/posts`,
+        url: `${process.env.NEXT_PUBLIC_API_HOST}/posts`,
         headers: {
             'Accept': 'application/json',
             'Authorization': `Bearer ${authenticationToken}`
@@ -112,7 +111,7 @@ export const getPostById = (id: number) : Promise<any> =>{
     const { authenticationToken} = getJWT();
     return axios({
         method: 'GET',
-        url: `${BASE_URL}/posts/${id}`,
+        url: `${process.env.NEXT_PUBLIC_API_HOST}/posts/${id}`,
         headers: {
             'Authorization': `Bearer ${authenticationToken}`
         }

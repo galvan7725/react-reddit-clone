@@ -15,7 +15,6 @@ import {
     Spinner
 } from 'reactstrap';
 import Image from 'next/image';
-import { getJWT } from '../services/authService';
 import Security from '../../security/Security';
 
 const Header = (): JSX.Element => {
