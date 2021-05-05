@@ -2,6 +2,8 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Layout from '../../components/shared/Layout';
 import Loading from '../../components/shared/Loading';
+import UserProfile from '../../components/userProfile/UserProfile';
+import { PostStateProvider } from '../../context/PostContext';
 
 const userProfile = () : JSX.Element => {
 
@@ -16,9 +18,15 @@ const userProfile = () : JSX.Element => {
     },[router.query])
 
     return (
+        <PostStateProvider>
         <Layout pageTitle="User Profile">
-            {loading ? <Loading/> : <h1>{userName}</h1>}
+            {loading ? <Loading/> 
+            :
+                <UserProfile {...{userName}} />
+           
+            }
         </Layout>
+        </PostStateProvider>
     )
 }
 

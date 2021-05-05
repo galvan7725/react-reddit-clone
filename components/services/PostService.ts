@@ -119,3 +119,16 @@ export const getPostById = (id: number) : Promise<any> =>{
         return response.data ? response.data : response.status;
     }).catch((error) => { return error.response.data });
 }
+
+export const getPostsByUserName = (userName: string | string[]) : Promise<any> => {
+    const { authenticationToken} = getJWT();
+    return axios({
+        method: 'GET',
+        url: `${process.env.NEXT_PUBLIC_API_HOST}/posts/by-user/${userName}`,
+        headers: {
+            'Authorization': `Bearer ${authenticationToken}`
+        }
+    }).then((response) => {
+        return response.data ? response.data : response.status;
+    }).catch((error) => { return error.response.data });
+}
