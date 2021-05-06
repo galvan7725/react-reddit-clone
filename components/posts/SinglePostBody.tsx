@@ -47,9 +47,6 @@ const SinglePostBody = ({postId}: _post) => {
             console.log(postId);
             getSinglePostData(postId);
         }
-        return () => {
-            setPost(null);
-        }
     }, [state.status])
 
     return (

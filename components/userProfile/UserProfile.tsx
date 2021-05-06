@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'reactstrap';
+import { PostStateProvider, useChangePostStatus } from '../../context/PostContext';
 import PostBody from '../IndexC/PostBody';
 import PostFooter from '../IndexC/PostFooter';
 import PostHeader from '../IndexC/PostHeader';
@@ -18,6 +19,8 @@ const UserProfile = ({ userName }: _userName): JSX.Element => {
     const [loading, setLoading] = useState<boolean>(true);
     const [posts, setPosts] = useState<Array<PostData>>([]);
     const [commentsCount, setCommentsCount] = useState<number>();
+
+    const {state} =  useChangePostStatus();
 
     const getPostsByUserNameData = async (): Promise<void> => {
         try {
@@ -41,7 +44,7 @@ const UserProfile = ({ userName }: _userName): JSX.Element => {
 
     useEffect(() => {
         getPostsByUserNameData();
-    }, []);
+    }, [state.status]);
 
     return (
         <>
