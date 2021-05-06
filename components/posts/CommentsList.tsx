@@ -1,4 +1,3 @@
-import { text } from '@fortawesome/fontawesome-svg-core';
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'reactstrap';
 import { useChangePostStatus } from '../../context/PostContext';
@@ -65,22 +64,6 @@ const CommentsList = ({postId} : _postId) => {
                          null}
                     </>
                 )}
-            </Col>
-        </Row>
-    )
-}
-
-const commentItem = ({userName, createdDate,text,key}) : JSX.Element =>{
-    return(
-        <Row key={key}>
-            <Col xs={12} md={12}>
-                {userName}
-            </Col>
-            <Col x={12} md={12}>
-                <span>{createdDate}</span>
-            </Col>
-            <Col x={12} md={12}>
-                <p>{text}</p>
             </Col>
         </Row>
     )
