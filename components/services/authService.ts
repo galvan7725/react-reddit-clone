@@ -32,3 +32,23 @@ export const refreshToken = (): Promise<any> =>{
         localStorage.setItem('token', JSON.stringify(response.data));
     }).catch((error)=>{ return error});
 }
+
+export const logout = () : Promise<any> => {
+    const refreshToken = getJWT().refreshToken;
+    const username = getJWT().username;
+    return axios({
+        method: 'POST',
+        url: `${process.env.NEXT_PUBLIC_API_HOST}/auth/logout`,
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+        data: {
+            refreshToken,
+            username
+        }
+    }).then((response)=>{
+        localStorage.removeItem('token');
+       return response.data;
+    }).catch((error)=>{ return error});
+}

@@ -17,6 +17,7 @@ import {
 import Image from 'next/image';
 import Security from '../../security/Security';
 import Link from 'next/link';
+import { logout } from '../services/authService';
 
 const Header = (): JSX.Element => {
 
@@ -46,6 +47,18 @@ const Header = (): JSX.Element => {
         }
     }
 
+    const logoutCall = async() : Promise<void> => {
+        try {
+            const response = await logout();
+            if (response == null){
+                throw new Error('Error logout');
+            }else{
+                router.push('/login');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     useEffect(() => {
         hasJwt();
@@ -71,7 +84,7 @@ const Header = (): JSX.Element => {
                                             <DropdownMenu>
                                                 <DropdownItem><Link href={`/user_profile/${security.getUserName()}`}><span>Profile</span></Link></DropdownItem>
                                                 <DropdownItem divider />
-                                                <DropdownItem>Logout</DropdownItem>
+                                                <DropdownItem onClick={() =>{logoutCall()}}>Logout</DropdownItem>
                                             </DropdownMenu>
                                         </Dropdown>
                                     </div>
