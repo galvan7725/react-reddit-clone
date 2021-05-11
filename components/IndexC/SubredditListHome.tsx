@@ -52,14 +52,14 @@ const SubredditListHome = () => {
                         {formatSubreddits(subreddits).map((subreddit,i) =>(
                             <Fragment key={i}>
                             <div className="subreddit-item">
-                                <Link  href={`/subreddit/${subreddit.id}`}><span className="subreddit-link">{subreddit.name}</span></Link>
+                                <Link  href={`/subreddits/${subreddit.id}`}><span className="subreddit-link">{subreddit.name}</span></Link>
                             </div>
                             <hr/>
                             </Fragment>
                         ))}
                         {subreddits.length > 3 ? (
                             <div className="subreddit-list-link">
-                                <Link href={`/subreddits/all`}><span className="subreddit-link">View all</span></Link>
+                                <Link href={`/subreddits`}><span className="subreddit-link">View all</span></Link>
                             </div>
                         ) : (<></>)}
                     </>) : 
