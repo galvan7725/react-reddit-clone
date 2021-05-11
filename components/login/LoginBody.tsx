@@ -37,10 +37,10 @@ const LoginBody = (): JSX.Element=> {
 
       try {
         const response = await Login(values);
-        if (response.error){
+        if (response == null || response.error){
           console.log(response);
           setLoadign(false);
-          setError(response.trace);
+          setError(response.trace || response.error);
           setErrorStatus(response.status);
           console.log(response);
         }else{
@@ -61,7 +61,10 @@ const LoginBody = (): JSX.Element=> {
         return (<><Alert style={{width:'100%'}} color="warning">Your acouunt isn´t active, please check your email</Alert></>)
       }else if(message.includes("Bad credentials\r\n\tat")){
         return (<><Alert style={{width:'100%'}} color="warning">The username and password don´t match</Alert></>)
-      }else if(status == 500){
+      }else if(message.includes("Forbidden")){
+        return (<><Alert style={{width:'100%'}} color="warning">The username and password don´t match</Alert></>)
+      }
+      else if(status == 500){
         return (<><Alert style={{width:'100%'}} color="warning">Internal Server Error, please try again</Alert></>)
       }else{
         return (<><Alert style={{width:'100%'}} color="warning">We have a problem with the server, please try again later</Alert></>)
