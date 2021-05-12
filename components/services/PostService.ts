@@ -132,3 +132,16 @@ export const getPostsByUserName = (userName: string | string[]) : Promise<any> =
         return response.data ? response.data : response.status;
     }).catch((error) => { return error.response.data });
 }
+
+export const getPostsBySubreddit = (subreddit: string | string[]) : Promise<any> => {
+    const {authenticationToken} = getJWT();
+    return axios({
+        method: 'GET',
+        url: `${process.env.NEXT_PUBLIC_API_HOST}/posts/by-subreddit/${subreddit}`,
+        headers: {
+            'Authorization': `Bearer ${authenticationToken}`
+        }
+    }).then((response) => {
+        return response.data ? response.data : response.status;
+    }).catch((error) => { return error.response.data });
+}

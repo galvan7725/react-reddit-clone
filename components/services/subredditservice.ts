@@ -29,3 +29,16 @@ export const createSubreddit = (subredditData: subredditData) : Promise<any> =>{
         return response.data ? response.data : response.status;
     }).catch((error) => { return error.response.data });
 }
+
+export const getSubredditDescription = (subredditId: string | string[]): Promise<any> => {
+    const { authenticationToken } = getJWT();
+    return axios({
+        method: 'GET',
+        url: `${process.env.NEXT_PUBLIC_API_HOST}/subreddit/${subredditId}`,
+        headers: {
+            'Authorization': `Bearer ${authenticationToken}`
+        }
+    }).then((response) => {
+        return response.data ? response.data : response.status;
+    }).catch((error) => { return error.response.data });
+}
